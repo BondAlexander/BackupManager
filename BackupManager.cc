@@ -2,6 +2,32 @@
 
 using namespace std;
 
+//MyFileObject Class Methods
+MyFileObject::MyFileObject(string file_path){
+  this->orig_path = file_path;
+  struct stat file_buf;
+
+  //lstat the file into file_buf
+  if(lstat(&(this->orig_path)[0], &file_buf) == -1){
+    cerr <<  "Couldn\'t open " << this->orig_path << "\n";
+  }
+
+  this->time_created = file_buf.st_ctime;
+
+
+}
+
+void MyFileObject::toString(){
+  time_t t = time_t(time_created);
+  struct tm *ftime = localtime(&t);
+  stringstream ss;
+
+  ss << "FILENAME: " << orig_path << "\n"
+       << "CREATED:  " << ftime->tm_hour<<":"<<ftime->tm_min<<":"<<ftime->tm_sec<<" "<<ftime->tm_mon<<"/"<<ftime->tm_mday<<"/"<<ftime->tm_year+1900 << "\n";
+  cout << ss;
+}
+
+//Independent Methods
 vector<string> mapDir(string target_path){
   DIR *target_dir;
   struct dirent *file;
