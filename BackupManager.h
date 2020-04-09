@@ -11,8 +11,14 @@ class MyFileObject{
 
     //Constructor
     MyFileObject(std::string);
-  private:
 
+    //Getters and Setters
+    void setTimeCreated(double);
+    double getTimeCreated();
+    void setOrigPath(std::string);
+    std::string getOrigPath();
+  private:
+    //Class Methods
     //Class Variables
     double        time_created;
     std::string   orig_path;
