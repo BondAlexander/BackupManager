@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <dirent.h>
 #include <sys/stat.h>
 
 
@@ -19,10 +20,12 @@ class MyFileObject{
     std::string getOrigPath();
   private:
     //Class Methods
+
     //Class Variables
     double        time_created;
     std::string   orig_path;
 };
 
+std::vector<std::string> mapDir(std::string);
 
 #endif

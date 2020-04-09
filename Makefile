@@ -11,9 +11,7 @@ executable=BM_Console
 class1=BackupManager
 
 all:
+	echo "\n\n\n\n\n\n\n"
 	g++ $(class1).cc -o $(executable) $(CXXFlags)
-
-	chmod a+x $(executable)
-
 clean:
 	rm -f *.o *.gch *.gcov a.out *.a
