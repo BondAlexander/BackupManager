@@ -11,5 +11,9 @@ executable=BM_Console
 class1=BackupManager
 
 all:
-	g++ -c $(class1).cc $(CXXFlags)
-	ar -rcs $(executable).a $(class1).o
+	g++ $(class1).cc -o $(executable) $(CXXFlags)
+
+	chmod a+x $(executable)
+
+clean:
+	rm -f *.o *.gch *.gcov a.out *.a
