@@ -31,7 +31,6 @@ class MyFileObject{
     double        time_created;
     std::string   orig_path;
     std::string   extension;
-
 };
 
 class FileCollection{
