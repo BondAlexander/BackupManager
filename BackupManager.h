@@ -6,17 +6,10 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <filesystem>
+#include <ctime>
+#include <sstream>
 
-class FileCollection{
-  public:
-    //Constructor
-    FileCollection(std::sting);
 
-    //Getters and Setters
-  private:
-    //Class Variables
-    vector<MyFileObject> collection;
-}
 
 class MyFileObject{
   public:
@@ -24,13 +17,15 @@ class MyFileObject{
     //Constructor
     MyFileObject(std::string);
 
+    //Class Methods
+    std::string toString();
+
     //Getters and Setters
     void setTimeCreated(double);
     double getTimeCreated();
     void setOrigPath(std::string);
-    std::string getOrigPath();
+    void getOrigPath();
   private:
-    //Class Methods
 
     //Class Variables
     double        time_created;
@@ -39,8 +34,18 @@ class MyFileObject{
 
 };
 
-std::vector<std::string> mapDir(std::string);
+class FileCollection{
+  public:
+    //Constructor
+    FileCollection(std::string);
 
-std::
+    //Getters and Setters
+  private:
+    //Class Variables
+
+
+};
+
+std::vector<std::string> mapDir(std::string);
 
 #endif
