@@ -66,9 +66,6 @@ vector<string> mapDir(string target_path){
 }
 
 
-
-
-
 int main(int argc, char *argv[]){
   vector<string> files = mapDir(argv[1]);
   for(int i = 0 ; i < files.size() ; i++){

@@ -24,8 +24,9 @@ class MyFileObject{
     void setTimeCreated(double);
     double getTimeCreated();
     void setOrigPath(std::string);
-    void getOrigPath();
+    std::string getOrigPath();
   private:
+    //Class Methods
 
     //Class Variables
     double        time_created;
