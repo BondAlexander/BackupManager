@@ -5,19 +5,17 @@ using namespace std;
 vector<string> mapDir(string target_path){
   DIR *target_dir;
   struct dirent *file;
-  struct stat *info_buf;
+  struct stat info_buf;
   vector<string> file_paths;
 
   if( (target_dir = opendir(&target_path[0])) != NULL){
     while( (file = readdir(target_dir)) != NULL){
       string file_name = target_path + "/" + file->d_name;
-
-
-      if(stat(&file_name[0], info_buf) == -1){
-        cerr << "Couldn\'t open " << file_name << "\n";
+      if( (lstat(&file_name[0], &info_buf))  == 0 ){
+        cout << file_name << " :: " << info_buf.st_size << "\n";
       }
       else{
-        cout << file_name << " :: " << info_buf->st_size << "\n";
+        cerr << "Couldn\'t open " << file_name << "\n";
       }
 
 
