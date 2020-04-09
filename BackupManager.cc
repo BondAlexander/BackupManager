@@ -23,7 +23,6 @@ vector<string> mapDir(string target_path){
       if(info_buf.st_mode & S_IFDIR){
         //Ignore . and ..
         if(!(strcmp(file->d_name, ".") == 0 || strcmp(file->d_name, "..") == 0) ){
-          cout << "Recursing on " << file_name << "\n";
           vector<string> more_paths = mapDir(file_name);
           for(int i = 0 ; i < more_paths.size() ; i++){
             file_paths.push_back(more_paths[i]);
