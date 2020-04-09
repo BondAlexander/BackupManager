@@ -15,7 +15,7 @@ class FileCollection{
     //Getters and Setters
   private:
     //Class Variables
-
+    vector<MyFileObject> collection;
 }
 
 class MyFileObject{
