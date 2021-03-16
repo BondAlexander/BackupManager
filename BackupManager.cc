@@ -5,7 +5,31 @@ using namespace std;
 //MyFileObject Class Methods
 MyFileObject::MyFileObject(string file_path){
   this->orig_path = file_path;
+  this->extension = "";
   struct stat file_buf;
+  ifstream file(&file_path[0]);
+  string file_as_string = "";
+
+  vector<string> file_types;
+  file_types.push_back("JFIF");
+  file_types.push_back("PNG");
+  file_types.push_back("PDF")
+
+  char c;
+  while(file.get(c)){
+    file_as_string += c ;
+    //Check if file is a JPEG
+    for(int i = 0 ; i < file_types.size() ; i++){
+      string f_type = file_types[i];
+      if(file_as_string.length() < f_type.length()){
+        break;
+      }
+      string f_end = file_as_string.substr(file_as_string.size()-f_type.size()-1, file_as_string.size()-1);
+      cout << f_end << "\n\n";
+    }
+
+  }
+  cout << file_as_string.substr(0, 6);
 
   //lstat the file into file_buf
   if(lstat(&(this->orig_path)[0], &file_buf) == -1){
@@ -15,16 +39,18 @@ MyFileObject::MyFileObject(string file_path){
   this->time_created = file_buf.st_ctime;
 
 
+
 }
 
-void MyFileObject::toString(){
+std::string MyFileObject::toString(){
   time_t t = time_t(time_created);
   struct tm *ftime = localtime(&t);
   stringstream ss;
 
-  ss << "FILENAME: " << orig_path << "\n"
-       << "CREATED:  " << ftime->tm_hour<<":"<<ftime->tm_min<<":"<<ftime->tm_sec<<" "<<ftime->tm_mon<<"/"<<ftime->tm_mday<<"/"<<ftime->tm_year+1900 << "\n";
-  cout << ss;
+  ss   << "FILENAME:  " << orig_path << "\n"
+       << "CREATED:   " << ftime->tm_hour<<":"<<ftime->tm_min<<":"<<ftime->tm_sec<<" "<<ftime->tm_mon<<"/"<<ftime->tm_mday<<"/"<<ftime->tm_year+1900 << "\n"
+       << "EXTENSION: " << this->extension << "\n";
+  return ss.str();
 }
 
 //Independent Methods
@@ -67,7 +93,14 @@ vector<string> mapDir(string target_path){
 
 int main(int argc, char *argv[]){
   vector<string> files = mapDir(argv[1]);
+  cout << "Contents of files:\n";
   for(int i = 0 ; i < files.size() ; i++){
     cout << files[i] << "\n";
   }
+  cout << "\n\n\n";
+
+  MyFileObject file = MyFileObject(files[files.size()-1]);
+
+  cout << file.toString();
+
 };
